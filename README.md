@@ -2,7 +2,7 @@
 This will be a note webapp that will be used to help me learn React + Django
 
 ## Video Progress:
-[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy)
+[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) (30:05/3:23:59)
 
 ### Notes:
 - Deploy:
