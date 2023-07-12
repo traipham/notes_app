@@ -2,7 +2,7 @@
 This will be a note webapp that will be used to help me learn React + Django
 
 ## Video Progress:
-[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) (30:05/3:23:59)
+[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) (50:11/3:23:59)
 
 ### Notes:
 - Deploy:
@@ -23,3 +23,6 @@ This will be a note webapp that will be used to help me learn React + Django
   - initial migration: `python manage.py migrate`
   - Create migration file: `python manage.py makemigration`
   - execute migration created from migration file: `python mangepy migrate`
+
+-Django Rest Framework:
+  - Documentation : [Link](https://www.django-rest-framework.org/)
