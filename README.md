@@ -2,7 +2,7 @@
 This will be a note webapp that will be used to help me learn React + Django
 
 ## Video Progress:
-[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) (50:11/3:23:59)
+[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) (1:16:11/3:23:59)
 
 ### Notes:
 - Deploy:
@@ -26,3 +26,8 @@ This will be a note webapp that will be used to help me learn React + Django
 
 -Django Rest Framework:
   - Documentation : [Link](https://www.django-rest-framework.org/)
+
+
+CORS error: [CORS Django Headers](https://pypi.org/project/django-cors-headers/#description)
+- React is makign a request to Django, and Django is blocking it 
+- Use Cors to allow specific or all urls to connect the BE and FE

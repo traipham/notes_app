@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('api.urls')) # api/urls.py will handle all routes for all paths that start with ''
+    path('api/', include('api.urls')) # api/urls.py will handle all routes for all paths that start with ''
 ]
