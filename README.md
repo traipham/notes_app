@@ -31,3 +31,8 @@ This will be a note webapp that will be used to help me learn React + Django
 CORS error: [CORS Django Headers](https://pypi.org/project/django-cors-headers/#description)
 - React is makign a request to Django, and Django is blocking it 
 - Use Cors to allow specific or all urls to connect the BE and FE
+
+Add Routing to React:
+- install `react-router-dom`
+- Create a Proxy URL (Home/real domain) # proxy URL?
+  - in package.json (React App) use tha attribute `proxy: <url:PORT>`
