@@ -260,3 +260,7 @@ span[name="delete-button"] {
     margin: 5px;
     padding: 3px;
 }
+
+span[class="note-button"]:hover{
+    cursor: pointer;
+}
