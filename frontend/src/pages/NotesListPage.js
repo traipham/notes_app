@@ -22,7 +22,7 @@ const NotesListPage = () => {
         <div className='notes'>
             <div className='notes-header'>
                 <h2 className='notes-title'>&#9782; Notes</h2>
-                <p className='notes-count'>Note count:{notes.length}</p>
+                <p className='notes-count'>count: {notes.length}</p>
             </div>
             <div className='notes-list'>
                 {notes.map((note, index) => {

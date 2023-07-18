@@ -55,10 +55,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'my_notes.urls'
 
+LAST_DIRECTORY_INDEX = BASE_DIR.__str__().rfind('\\')
+DJANGO_APP_DIRECTORY = BASE_DIR.__str__()[:LAST_DIRECTORY_INDEX]
+FRONTEND_DIRECTORY = DJANGO_APP_DIRECTORY + '\\frontend'
+FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '\\build'
+print(f'frontend build directory: {FRONTEND_BUILD_DIRECTORY}')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            FRONTEND_BUILD_DIRECTORY
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    FRONTEND_BUILD_DIRECTORY + '\\static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
