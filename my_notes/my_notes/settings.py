@@ -59,7 +59,7 @@ LAST_DIRECTORY_INDEX = BASE_DIR.__str__().rfind('\\')
 DJANGO_APP_DIRECTORY = BASE_DIR.__str__()[:LAST_DIRECTORY_INDEX]
 FRONTEND_DIRECTORY = DJANGO_APP_DIRECTORY + '\\frontend'
 FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '\\build'
-print(f'frontend build directory: {FRONTEND_BUILD_DIRECTORY}')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

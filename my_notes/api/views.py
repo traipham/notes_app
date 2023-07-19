@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 
 from .models import Note
 from .serializers import NoteSerializer
+from .utils import *
 
 # Create your views here.
 @api_view(['GET'])
@@ -43,38 +44,47 @@ def getRoutes(request):
     ]
     return Response(routes)
 
-@api_view(['GET'])
+# Restful API:
+# /notes GET
+# /notes POST
+# /notes/<id> GET
+# /notes/<id> PUT
+
+@api_view(['GET', 'POST'])
 def getNotes(request):
-    notes = Note.objects.all().order_by('-updated') # updated notes will appear at top
-    serializer = NoteSerializer(notes, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
+    if request.method == 'GET':
+        return getNoteList(request)
+    if request.method == 'POST':
+        return createNote(request)
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def getNote(request, pk):
-    notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        return getNoteDetails(request, pk)
+    if request.method == 'PUT':
+        return updateNote(request, pk)
+    if request.method == 'DELETE':
+        return deleteNote(request, pk)
 
-@api_view(['POST'])
-def createNote(request):
-    data = request.data
-    note = Note.objects.create(
-        body=data['body']
-    )
-    serializer = NoteSerializer(note, many=False)
-    return Response(serializer.data)
+# @api_view(['POST'])
+# def createNote(request):
+#     data = request.data
+#     note = Note.objects.create(
+#         body=data['body']
+#     )
+#     serializer = NoteSerializer(note, many=False)
+#     return Response(serializer.data)
 
-@api_view(['PUT'])
-def updateNote(request, pk):
-    data = request.data
-    note = Note.objects.get(id=pk)
-    serialier = NoteSerializer(instance=note, data=data) # data = new_data, modify the data
-    if serialier.is_valid():
-        serialier.save() # Saving the form
-    return Response(serialier.data)
+# @api_view(['PUT'])
+# def updateNote(request, pk):
+#     data = request.data
+#     note = Note.objects.get(id=pk)
+#     serialier = NoteSerializer(instance=note, data=data) # data = new_data, modify the data
+#     if serialier.is_valid():
+#         serialier.save() # Saving the form
+#     return Response(serialier.data)
 
-@api_view(['DELETE'])
-def deleteNote(request, pk):
-    note = Note.objects.get(id=pk) # Grab entry from database
-    note.delete()
-    return Response("Deleted Note!")
+# @api_view(['DELETE'])
+# def deleteNote(request, pk):
+#     note = Note.objects.get(id=pk) # Grab entry from database
+#     note.delete()
+#     return Response("Deleted Note!")

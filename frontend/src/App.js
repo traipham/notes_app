@@ -2,7 +2,7 @@
  * Main React web components 
  */
 import {
-  BrowserRouter as Router,
+  HashRouter as Router, // TODO: React Router URL routing issues
   Route,
   Routes,
   useParams

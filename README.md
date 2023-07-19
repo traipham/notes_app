@@ -2,7 +2,8 @@
 This will be a note webapp that will be used to help me learn React + Django
 
 # Video Progress:
-[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) (2:53:12/3:23:59)
+[Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) [COMPLETED!]
+[Link](<LINK TO DEPLOYMENT VIDEO FOR DJANGO >)
 
 # Notes:
 - Deploy:
@@ -79,3 +80,8 @@ This will be a note webapp that will be used to help me learn React + Django
         6. > 503 - Server Error
   5. Render the web components
   6. Make sure that routes are configure for frontend to display pages
+  7. Host App on from Backend
+     1. Run `npm run build` on FE 
+     2. Configure the setting of the build directory in the `TEMPLATE: {DIR: [<frontend-build-directory>]}`
+     3. Configure the setting of the static files in the build directory `STATICFILES_DIRS = [<FRONTEND_BUILD_DIRECTORY> + '\\static']`
+     4. Run Django server and it should be on that port
