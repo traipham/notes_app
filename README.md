@@ -4,6 +4,7 @@ This will be a note webapp that will be used to help me learn React + Django
 # Video Progress:
 [Link](https://www.youtube.com/watch?v=tYKRAXIio28&ab_channel=DennisIvy) [COMPLETED!]
 [Link](<LINK TO DEPLOYMENT VIDEO FOR DJANGO >)
+[Link](Follow this guide to deploy on heroku: https://techincent.com/how-to-deploy-django-and-react-in-heroku/)
 
 # Notes:
 - Deploy:

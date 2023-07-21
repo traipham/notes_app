@@ -1,0 +1,20 @@
+{
+    "name": "notes_app",
+    "version": "1.0.1",
+    "description": "Business listing application",
+    "main": "index.js",
+    "repository": "git@github.com:sajalmia381/django-react-setup.git",
+    "author": "Md Sajal Mia <sajalmia381@gmail.com>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "heroku-prebuild": "NODE_ENV=production cd frontend/ && yarn install && yarn build && cd .."
+    },
+    "cacheDirectories": [
+        "frontend/node_modules"
+    ],
+    "engines": {
+        "node": "16.15.0",
+        "npm": "8.10.0"
+    }
+}
