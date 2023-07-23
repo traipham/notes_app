@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-# import django_heroku
+# import django_on_heroku
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -149,7 +149,7 @@ STATICFILES_DIRS = []
 
 if IS_HEROKU_APP:
     STATICFILES_DIRS = [
-        STATIC_ROOT
+        BASE_DIR + '/static'
     ] 
 else:
     STATICFILES_DIRS = [
@@ -175,4 +175,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# django_heroku.settings(locals())
+# django_on_heroku.settings(locals())
