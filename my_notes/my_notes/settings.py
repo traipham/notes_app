@@ -147,9 +147,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = []
 
+project_directory = os.path.dirname(BASE_DIR)
+
+print(f"base_dir: {BASE_DIR}")
+
+print(f'project_directory: {project_directory}')
+
 if IS_HEROKU_APP:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'frontend/build/static')
+        os.path.join('', 'frontend/build/static')
     ] 
 else:
     STATICFILES_DIRS = [
