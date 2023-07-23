@@ -71,7 +71,7 @@ ROOT_URLCONF = 'my_notes.urls'
 
 LAST_DIRECTORY_INDEX = BASE_DIR.__str__().rfind('\\')
 DJANGO_APP_DIRECTORY = BASE_DIR.__str__()[:LAST_DIRECTORY_INDEX]
-FRONTEND_DIRECTORY = DJANGO_APP_DIRECTORY + '\\frontend'
+FRONTEND_DIRECTORY = (DJANGO_APP_DIRECTORY + '\\frontend').replace('\\', '/')
 FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '\\build'
 
 TEMPLATES = [
@@ -97,21 +97,15 @@ WSGI_APPLICATION = 'my_notes.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if IS_HEROKU_APP:
-    DATABASES = {
-        "default": dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=True,
-        ),
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 
 # Password validation
@@ -151,7 +145,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    FRONTEND_BUILD_DIRECTORY + '\\static'
+    FRONTEND_BUILD_DIRECTORY + '/static'
 ]
 
 STORAGES = {
