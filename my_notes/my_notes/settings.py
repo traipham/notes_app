@@ -148,6 +148,8 @@ STATICFILES_DIRS = [
     FRONTEND_BUILD_DIRECTORY + '/static'
 ]
 
+print(f"STATIC FILES DIR: {STATICFILES_DIRS}")
+
 STORAGES = {
     # Enable WhiteNoise's GZip and Brotli compression of static assets:
     # https://whitenoise.readthedocs.io/en/latest/django.html#add-compression-and-caching-support
