@@ -16,8 +16,5 @@
     "engines": {
         "node": "16.15.0",
         "npm": "8.10.0"
-    },
-    "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
     }
 }
