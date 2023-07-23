@@ -149,7 +149,7 @@ STATICFILES_DIRS = []
 
 if IS_HEROKU_APP:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
+        os.path.join(BASE_DIR, 'frontend/build/static')
     ] 
 else:
     STATICFILES_DIRS = [
