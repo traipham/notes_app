@@ -144,9 +144,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    FRONTEND_BUILD_DIRECTORY + '/static'
-]
+
+STATICFILES_DIRS = []
+
+if IS_HEROKU_APP:
+    STATICFILES_DIRS = [
+        STATIC_ROOT
+    ] 
+else:
+    STATICFILES_DIRS = [
+        FRONTEND_BUILD_DIRECTORY + '/static'
+    ]
 
 print(f"STATIC FILES DIR: {STATICFILES_DIRS}")
 
