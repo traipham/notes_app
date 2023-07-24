@@ -86,3 +86,71 @@ This will be a note webapp that will be used to help me learn React + Django
      2. Configure the setting of the build directory in the `TEMPLATE: {DIR: [<frontend-build-directory>]}`
      3. Configure the setting of the static files in the build directory `STATICFILES_DIRS = [<FRONTEND_BUILD_DIRECTORY> + '\\static']`
      4. Run Django server and it should be on that port
+
+
+## Deployment:
+- Django + React (Django serving React: one-app)
+  1. Install modules/packages (FE):
+     1. npm install --save-dev @babel/preset-env
+     2. remove any '@babel/....plugin' from `package.json` dependencies
+  2. Install modules/packages (BE):
+     1. Activate virtual environment
+     2. Pip install: 
+        1. dj_database_url
+        2. waitress 
+        3. whitenoise
+        4. psycopg
+  3. Configure `settings.py` in app folder
+     1. Add `whitenoise.runserver_nostatic` to <b>INSTALLED_APPS</b>
+     2. Add `whitenoise.middleware.WhiteNoiseMiddleware` to <b>MMIDDLEWARE</b> after `django.middleware.security.SecurityMiddleware`
+     3. `IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ` - Settigns for local vs production environment 
+     4. Add variables for directories of 
+        1. FE build directory
+        2. FE static file directory
+     5. Add the FE build directory to <b>TEMPLATES.DIRS</b>
+     6. Configure the Database:
+        1. > $ `db_from_env = dj_database_url.config()`</br>
+           > $ `DATABASES['default'].update(db_from_env)`</br>
+           > $ `DATABASES['default']['CONN_MAX_AGE'] = 50`
+     7. Configure `CORS_ALLOW_ALL_ORIGINS = True` to allow communication between FE and BE
+     8. Configure `WHITENOISE_KEEP_ONLY_HASHED_FILES = True`
+     9. Configure `STATIC_URL = 'static/'` and `STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')` and `STATICFILES_DIRS = <FE/Build/static_path>`
+  4. Heroku Setup
+     1. Install heroku with `brew install heroku`
+     2. Run `heroku login` in terminal
+        1. Login to heroku
+     3. Create a heroku app `heroku create APP_NAME`
+        1. Or create through the Heroku dashboard
+     4. Get the heroku remote repo: `heroku git:remote -a REPO_NAME`
+     5. Configure Heroku Buildpacks:
+        1. Run `$ heroku buildpacks:add --index 1 heroku/nodejs`
+        2. Run `$ heroku buildpacks:add --index 2 heroku/python`
+     6. Configure PostgresSQL Heroku addon: `heroku addons:create heroku-postgresql:mini`
+     7. Disable collectstatic file?: `heroku config:set DISABLE_COLLECTSTATIC=1`
+  5. Create a `package.json` in project location: 
+     1. `{
+          "name": "CHANGE_APP_NAME",
+          "version": "1.0.1",
+          "description": "CHANGE DISCRIPTION",
+          "main": "index.js",
+          "repository": "CHANGE_YOUR_GIT_REPO.git",
+          "author": "CHANGE_YOUR_NAME <CHANGE_YOUR_EMAIL>",
+          "license": "MIT",
+          "private": true,
+          "scripts": {
+              "heroku-prebuild": "NODE_ENV=production cd frontend/ && yarn install && yarn build && cd .."
+          },
+          "cacheDirectories": [
+              "frontend/node_modules"
+          ],
+          "engines": {
+              "node": "16.15.0",
+              "npm": "8.10.0"
+          }
+      }`
+  6. Create `runtime.txt` that include the Python version `python-x.x.x`
+  7. Create `requirements.txt` for Django project. Do `pip freeze > requirements.txt`
+  8. Create Procfile that will include:
+     1. `release: python manage.py migrate`
+     2. `web: sh -c 'cd ./APP_NAME/ && waitress-serve --port=$PORT APP_NAME.wsgi:application'`
+  9. Commit and push to heroku: `git push heroku main`

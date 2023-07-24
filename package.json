@@ -1,10 +1,10 @@
 {
     "name": "notes_app",
     "version": "1.0.1",
-    "description": "Business listing application",
+    "description": "Note taking app made from following a youtube video",
     "main": "index.js",
-    "repository": "git@github.com:sajalmia381/django-react-setup.git",
-    "author": "Md Sajal Mia <sajalmia381@gmail.com>",
+    "repository": "git@github.com:traipham/notes_app.git",
+    "author": "Trai Pham <traipham16@yahoo.com>",
     "license": "MIT",
     "private": true,
     "scripts": {
