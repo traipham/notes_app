@@ -72,7 +72,7 @@ ROOT_URLCONF = 'my_notes.urls'
 LAST_DIRECTORY_INDEX = BASE_DIR.__str__().rfind('\\')
 DJANGO_APP_DIRECTORY = BASE_DIR.__str__()[:LAST_DIRECTORY_INDEX]
 FRONTEND_DIRECTORY = (DJANGO_APP_DIRECTORY + '/frontend').replace('\\', '/')
-FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '/build'
+FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '/build' if not IS_HEROKU_APP else os.path.join('', 'frontend/build')
 
 TEMPLATES = [
     {
