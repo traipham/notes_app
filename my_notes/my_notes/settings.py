@@ -69,10 +69,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'my_notes.urls'
 
+project_directory = os.path.dirname(BASE_DIR)
+
 LAST_DIRECTORY_INDEX = BASE_DIR.__str__().rfind('\\')
 DJANGO_APP_DIRECTORY = BASE_DIR.__str__()[:LAST_DIRECTORY_INDEX]
 FRONTEND_DIRECTORY = (DJANGO_APP_DIRECTORY + '/frontend').replace('\\', '/')
-FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '/build' if not IS_HEROKU_APP else os.path.join('', 'frontend/build')
+FRONTEND_BUILD_DIRECTORY = FRONTEND_DIRECTORY + '/build' if not IS_HEROKU_APP else os.path.join(project_directory, 'frontend/build')
 
 TEMPLATES = [
     {
@@ -147,15 +149,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = []
 
-project_directory = os.path.dirname(BASE_DIR)
-
 print(f"base_dir: {BASE_DIR}")
 
 print(f'project_directory: {project_directory}')
 
 if IS_HEROKU_APP:
     STATICFILES_DIRS = [
-        os.path.join('', 'frontend/build/static')
+        os.path.join(project_directory, 'frontend/build/static')
     ] 
 else:
     STATICFILES_DIRS = [
