@@ -1,2 +1,2 @@
 release: python ./my_notes/manage.py migrate
-web: waitress-serve --port=$PORT ./my_notes/my_notes.wsgi
+web: sh -c 'cd ./my_notes/ && waitress-serve --port=$PORT my_notes.wsgi:application''
